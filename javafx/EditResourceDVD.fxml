@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: E5E5E5;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EditResourceController">
+    <columnConstraints>
+
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="75.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="441.0" minWidth="10.0" prefWidth="441.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="10.0" prefWidth="84.0" />
+
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="138.0" minHeight="10.0" prefHeight="134.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="181.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="212.0" minHeight="0.0" prefHeight="85.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+            <image>
+                <Image url="@images/BackArrow.png" />
+            </image>
+            <GridPane.margin>
+                <Insets left="20.0" top="15.0" />
+            </GridPane.margin>
+        </ImageView>
+        <Button mnemonicParsing="false" onAction="#goToManageResources" opacity="0.0" prefHeight="44.0" prefWidth="64.0" style="-fx-background-color: #444;" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets top="5.0" />
+            </GridPane.margin>
+        </Button>
+
+        <TextField fx:id="search" maxWidth="-Infinity" opacity="0.87" prefHeight="25.0" prefWidth="210.0" promptText="Resource ID" style="-fx-background-color: #FFFFFF; -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); -fx-border-color: #888; -fx-border-radius: 5px;" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+            <GridPane.margin>
+                <Insets bottom="60.0" />
+            </GridPane.margin>
+        </TextField>
+        <Button mnemonicParsing="false" onAction="#displayResourceDVD" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #3C58FA;" text="Search" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+        <GridPane.margin>
+            <Insets bottom="60.0" />
+        </GridPane.margin>
+        </Button>
+        <ImageView fitHeight="54.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <image>
+                <Image url="@images/LogOut.png" />
+            </image>
+            <GridPane.margin>
+                <Insets right="20.0" top="15.0" />
+            </GridPane.margin>
+        </ImageView>
+        <Button mnemonicParsing="false" onAction="#goToLogin" opacity="0.0" prefHeight="44.0" prefWidth="61.0" style="-fx-background-color: #444;" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets right="15.0" top="15.0" />
+            </GridPane.margin>
+        </Button>
+        <Text fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit a DVD" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <font>
+                <Font name="System Bold" size="30.0" />
+            </font>
+            <GridPane.margin>
+                <Insets bottom="60.0" />
+            </GridPane.margin>
+        </Text>
+        <Text fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit any information below. Leave blank to remain unchanged." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <GridPane.margin>
+                <Insets bottom="25.0" />
+            </GridPane.margin>
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <Label fx:id="id" alignment="CENTER_LEFT" contentDisplay="LEFT" prefHeight="21.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="100.0" />
+            </GridPane.margin>
+        </Label>
+        <Label fx:id="title" alignment="CENTER_LEFT" contentDisplay="LEFT" prefHeight="21.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="70.0" />
+            </GridPane.margin>
+        </Label>
+        <Label fx:id="year" alignment="CENTER_LEFT" contentDisplay="LEFT" prefHeight="21.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="40.0" />
+            </GridPane.margin>
+        </Label>
+        <Label fx:id="desc" alignment="CENTER_LEFT" contentDisplay="LEFT" prefHeight="21.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="10.0" />
+            </GridPane.margin>
+        </Label>
+        <Label fx:id="director" alignment="CENTER_LEFT" contentDisplay="LEFT" prefHeight="21.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="-20.0" />
+            </GridPane.margin>
+        </Label>
+        <Label fx:id="runtime" alignment="CENTER_LEFT" contentDisplay="LEFT" prefHeight="21.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="-50.0" />
+            </GridPane.margin>
+        </Label>
+        <Label fx:id="language" alignment="CENTER_LEFT" contentDisplay="LEFT" prefHeight="21.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="-80.0" />
+            </GridPane.margin>
+        </Label>
+
+        <TextField fx:id="titleNew" maxWidth="-Infinity" minWidth="-Infinity" opacity="0.87" prefHeight="25.0" prefWidth="90.0" promptText="Title" style="-fx-background-color: #FFFFFF; -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); -fx-border-color: #888; -fx-border-radius: 5px;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+            <GridPane.margin>
+                <Insets bottom="60.0" right="100" />
+            </GridPane.margin>
+        </TextField>
+        <TextField fx:id="runtimeNew" maxWidth="-Infinity" opacity="0.87" prefHeight="25.0" prefWidth="90.0" promptText="Runtime" style="-fx-background-color: #FFFFFF; -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); -fx-border-color: #888; -fx-border-radius: 5px;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+            <GridPane.margin>
+                <Insets bottom="60.0" />
+            </GridPane.margin>
+        </TextField>
+        <TextField fx:id="directorNew" maxWidth="-Infinity" opacity="0.87" prefHeight="25.0" prefWidth="90.0" promptText="Director" style="-fx-background-color: #FFFFFF; -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); -fx-border-color: #888; -fx-border-radius: 5px;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+            <GridPane.margin>
+                <Insets right="100" top="5.0" />
+            </GridPane.margin>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </TextField>
+        <TextField fx:id="yearNew" maxWidth="-Infinity" opacity="0.87" prefHeight="25.0" prefWidth="90.0" promptText="Year" style="-fx-background-color: #FFFFFF; -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); -fx-border-color: #888; -fx-border-radius: 5px;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+            <GridPane.margin>
+                <Insets top="5.0" />
+            </GridPane.margin>
+        </TextField>
+
+        <TextField fx:id="descNew" maxWidth="-Infinity" opacity="0.87" prefHeight="25.0" prefWidth="190" promptText="Desc (Optional)" style="-fx-background-color: #FFFFFF; -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); -fx-border-color: #888; -fx-border-radius: 5px;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+            <GridPane.margin>
+                <Insets top="135" />
+            </GridPane.margin>
+        </TextField>
+        <TextField fx:id="languageNew" maxWidth="-Infinity" opacity="0.87" prefHeight="25.0" prefWidth="190" promptText="Language (Optional)" style="-fx-background-color: #FFFFFF; -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); -fx-border-color: #888; -fx-border-radius: 5px;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <cursor>
+                <Cursor fx:constant="TEXT" />
+            </cursor>
+            <GridPane.margin>
+                <Insets top="70.0" />
+            </GridPane.margin>
+        </TextField>
+        <Button mnemonicParsing="false" onAction="#checkDataDVD" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #3C58FA;" text="Edit Info" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets top="10.0" />
+            </GridPane.margin>
+        </Button>
+    </children>
+</GridPane>

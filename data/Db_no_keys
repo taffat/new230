@@ -1,0 +1,206 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               10.3.11-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win64
+-- HeidiSQL Version:             9.4.0.5125
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- Dumping structure for table users.bok_book
+DROP TABLE IF EXISTS `bok_book`;
+CREATE TABLE IF NOT EXISTS `bok_book` (
+  `bok_ResourceId` int(11) NOT NULL,
+  `bok_Author` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `bok_Publisher` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `bok_Genre` varchar(64) COLLATE latin1_general_ci DEFAULT NULL,
+  `bok_ISBN` varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  `bok_language` varchar(64) COLLATE latin1_general_ci DEFAULT NULL,
+  PRIMARY KEY (`bok_ResourceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.bor_borrow
+DROP TABLE IF EXISTS `bor_borrow`;
+CREATE TABLE IF NOT EXISTS `bor_borrow` (
+  `bor_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `bor_UserId` int(11) NOT NULL,
+  `bor_ResourceCopyId` int(11) NOT NULL,
+  `bor_DateBorrowed` datetime NOT NULL,
+  `bor_DateDue` datetime DEFAULT NULL,
+  `bor_returned` tinyint(1) NOT NULL DEFAULT 0,
+  `bor_Status` VARCHAR(64) NOT NULL DEFAULT 'Pending' COLLATE 'latin1_general_ci',
+  PRIMARY KEY (`bor_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.dvds_dvdsubtitles
+DROP TABLE IF EXISTS `dvds_dvdsubtitles`;
+CREATE TABLE IF NOT EXISTS `dvds_dvdsubtitles` (
+  `dvds_DVDId` int(11) NOT NULL,
+  `dvds_subtileLanguage` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`dvds_DVDId`,`dvds_subtileLanguage`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.dvd_dvd
+DROP TABLE IF EXISTS `dvd_dvd`;
+CREATE TABLE IF NOT EXISTS `dvd_dvd` (
+  `dvd_ResourceId` int(11) NOT NULL,
+  `dvd_Director` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `dvd_Runtime` int(11) NOT NULL,
+  `dvd_Language` varchar(64) COLLATE latin1_general_ci DEFAULT NULL,
+  `dvd_Subtitles` VARCHAR(255) NULL DEFAULT NULL COLLATE 'latin1_general_ci',
+  PRIMARY KEY (`dvd_ResourceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.fin_fine
+DROP TABLE IF EXISTS `fin_fine`;
+CREATE TABLE IF NOT EXISTS `fin_fine` (
+  `fin_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `fin_ReturnId` int(11) NOT NULL,
+  `fin_FineAmount` int(11) NOT NULL,
+  `fin_DaysOverdue` int(11) NOT NULL,
+  `fin_Status` VARCHAR(64) NOT NULL DEFAULT 'Pending' COLLATE 'latin1_general_ci',
+  PRIMARY KEY (`fin_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.lab_laptop
+DROP TABLE IF EXISTS `lab_laptop`;
+CREATE TABLE IF NOT EXISTS `lab_laptop` (
+  `lab_ResourceId` int(11) NOT NULL,
+  `lab_Manufacturer` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `lab_Model` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `lab_OS` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`lab_ResourceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.lib_librarian
+DROP TABLE IF EXISTS `lib_librarian`;
+CREATE TABLE IF NOT EXISTS `lib_librarian` (
+  `lib_UserId` int(11) NOT NULL,
+  `lib_StaffNumber` int(11) NOT NULL,
+  `lib_EmploymentDate` datetime NOT NULL,
+  PRIMARY KEY (`lib_UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.pay_payment
+DROP TABLE IF EXISTS `pay_payment`;
+CREATE TABLE IF NOT EXISTS `pay_payment` (
+  `pay_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `pay_UserId` int(11) NOT NULL,
+  `pay_Date` datetime NOT NULL,
+  `pay_Amount` FLOAT NOT NULL,
+  `pay_Status` varchar(64) NOT NULL DEFAULT 'Pending',
+  PRIMARY KEY (`pay_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.rcps_resourcecopystatus
+DROP TABLE IF EXISTS `rcps_resourcecopystatus`;
+CREATE TABLE IF NOT EXISTS `rcps_resourcecopystatus` (
+	`rcps_ResourceCopyStatusId` TINYINT(4) NOT NULL,
+	`rcps_ResourceCopyStatus` VARCHAR(64) NOT NULL,
+	PRIMARY KEY (`rcps_ResourceCopyStatusId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.rcp_resourcecopy
+DROP TABLE IF EXISTS `rcp_resourcecopy`;
+CREATE TABLE IF NOT EXISTS `rcp_resourcecopy` (
+  `rcp_CopyId` int(11) NOT NULL AUTO_INCREMENT,
+  `rcp_ResourceId` int(11) NOT NULL,
+  `rcp_loanDuration` int(11) NOT NULL COMMENT 'number of days',
+  `rcp_Status` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`rcp_CopyId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.req_request
+DROP TABLE IF EXISTS `req_request`;
+CREATE TABLE IF NOT EXISTS `req_request` (
+  `req_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `req_UserId` int(11) NOT NULL,
+  `req_BorrowId` int(11) NOT NULL,
+  `req_RequestDate` datetime NOT NULL,
+  `req_Available` tinyint(1) NOT NULL,
+  PRIMARY KEY (`req_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.res_resource
+DROP TABLE IF EXISTS `res_resource`;
+CREATE TABLE IF NOT EXISTS `res_resource` (
+  `res_ResourceId` int(11) NOT NULL AUTO_INCREMENT,
+  `res_ResourceType` int(11) NOT NULL DEFAULT 0,
+  `res_Title` varchar(255) COLLATE latin1_general_ci NOT NULL,
+  `res_Year` int(5) NOT NULL,
+  `res_ThumbnailImage` MEDIUMBLOB NOT NULL,
+  `res_Description` VARCHAR(255) NULL DEFAULT NULL COLLATE 'latin1_general_ci',
+  `res_Rating` TINYINT(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`res_ResourceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.ret_return
+DROP TABLE IF EXISTS `ret_return`;
+CREATE TABLE IF NOT EXISTS `ret_return` (
+  `ret_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `ret_BorrowId` int(11) NOT NULL,
+  `ret_DateReturned` datetime NOT NULL,
+  `ret_Overdue` tinyint(1) NOT NULL,
+  `ret_Status` VARCHAR(64) NOT NULL DEFAULT 'Pending' COLLATE 'latin1_general_ci',
+  PRIMARY KEY (`ret_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.rev_resourcereview
+DROP TABLE IF EXISTS `rev_resourcereview`;
+CREATE TABLE IF NOT EXISTS `rev_resourcereview` (
+  `rev_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `rev_ResourceId` int(11) NOT NULL,
+  `rev_UserId` int(11) NOT NULL,
+  `rev_Title` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `rev_Review` varchar(255) COLLATE latin1_general_ci NOT NULL,
+  `rev_Rating` tinyint(4) NOT NULL,
+  PRIMARY KEY (`rev_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.uset_usertype
+DROP TABLE IF EXISTS `uset_usertype`;
+CREATE TABLE IF NOT EXISTS `uset_usertype` (
+	`uset_UserTypeId` INT(11) NOT NULL,
+	`uset_UserType` VARCHAR(64) NOT NULL,
+	PRIMARY KEY (`uset_UserTypeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.use_user
+DROP TABLE IF EXISTS `use_user`;
+CREATE TABLE IF NOT EXISTS `use_user` (
+  `use_UserId` int(11) NOT NULL AUTO_INCREMENT,
+  `use_UserType` int(11) NOT NULL DEFAULT 0,
+  `use_Username` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `use_FirstName` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `use_LastName` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `use_PhoneNumber` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `use_Address` varchar(255) COLLATE latin1_general_ci NOT NULL,
+  `use_Postcode` varchar(10) COLLATE latin1_general_ci NOT NULL,
+  `use_Balance` FLOAT NOT NULL DEFAULT 0,
+  `use_ProfileImage` MEDIUMBLOB NOT NULL,
+  PRIMARY KEY (`use_UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

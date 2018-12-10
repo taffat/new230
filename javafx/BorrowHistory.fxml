@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BorrowHistoryController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="58.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.0" minWidth="10.0" prefWidth="470.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="56.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="101.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="240.0" minHeight="10.0" prefHeight="240.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="49.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Text fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Borrow History" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
+      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn fx:id="col_username" prefWidth="75.0" text="Username" />
+          <TableColumn fx:id="col_firstName" prefWidth="75.0" text="First Name" />
+            <TableColumn fx:id="col_lastName" prefWidth="75.0" text="Last Name" />
+            <TableColumn fx:id="col_dateBorrowed" prefWidth="126.0" text="Date Borrowed" />
+            <TableColumn fx:id="col_dateReturned" prefWidth="123.0" text="Date Returned" />
+        </columns>
+      </TableView>
+      <TextField fx:id="search" promptText="Enter a copy ID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button mnemonicParsing="false" onAction="#goToLibDash" style="-fx-background-color: #3C58FA;" text="Return to Dashboard" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" onAction="#displayTable" style="-fx-background-color: #3C58FA;" text="Search" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+      <Label fx:id="lblStatus" alignment="CENTER" prefHeight="31.0" prefWidth="255.0" textFill="BLACK" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="75.0" />
+         </GridPane.margin></Label>
+   </children>
+</GridPane>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: E5E5E5;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProfileController">
+    <columnConstraints>
+
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="206.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.0" minWidth="10.0" prefWidth="178.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="10.0" prefWidth="216.0" />
+
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="112.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="203.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="212.0" minHeight="0.0" prefHeight="85.0" />
+    </rowConstraints>
+    <children>
+        <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+            <image>
+                <Image url="@images/BackArrow.png" />
+            </image>
+            <GridPane.margin>
+                <Insets left="20.0" top="15.0" />
+            </GridPane.margin>
+        </ImageView>
+        <Button mnemonicParsing="false" onAction="#goToUserDash" opacity="0.0" prefHeight="44.0" prefWidth="64.0" style="-fx-background-color: #444;" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets top="5.0" />
+            </GridPane.margin>
+        </Button>
+        <ImageView fitHeight="54.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <image>
+                <Image url="@images/LogOut.png" />
+            </image>
+            <GridPane.margin>
+                <Insets right="20.0" top="15.0" />
+            </GridPane.margin>
+        </ImageView>
+        <Button mnemonicParsing="false" onAction="#goToLogin" opacity="0.0" prefHeight="44.0" prefWidth="61.0" style="-fx-background-color: #444;" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets right="15.0" top="15.0" />
+            </GridPane.margin>
+        </Button>
+        <Text fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="User Profile" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <font>
+                <Font name="System Bold" size="30.0" />
+            </font>
+            <GridPane.margin>
+                <Insets bottom="20.0" />
+            </GridPane.margin>
+        </Text>
+        <Text fx:id="idNumText" boundsType="VISUAL" fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Unique ID:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <GridPane.margin>
+                <Insets top="15.0" />
+            </GridPane.margin>
+        </Text>
+        <Text boundsType="VISUAL" fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <GridPane.margin>
+                <Insets top="35.0" />
+            </GridPane.margin>
+        </Text>
+        <Text boundsType="VISUAL" fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Forename(s):" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <GridPane.margin>
+                <Insets top="55.0" />
+            </GridPane.margin>
+        </Text>
+        <Text boundsType="VISUAL" fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <GridPane.margin>
+                <Insets top="75.0" />
+            </GridPane.margin>
+        </Text>
+        <Text boundsType="VISUAL" fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <GridPane.margin>
+                <Insets top="95.0" />
+            </GridPane.margin>
+        </Text>
+        <Text boundsType="VISUAL" fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <GridPane.margin>
+                <Insets top="115.0" />
+            </GridPane.margin>
+        </Text>
+        <Text boundsType="VISUAL" fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Postcode:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <GridPane.margin>
+                <Insets top="135.0" />
+            </GridPane.margin>
+        </Text>
+        <Text fx:id="adjustText" boundsType="VISUAL" fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <GridPane.margin>
+                <Insets top="155.0" />
+            </GridPane.margin>
+        </Text>
+        <Label fx:id="idNum" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="450.0" textAlignment="LEFT" textFill="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets left="10" top="4.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="username" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="450.0" textAlignment="LEFT" textFill="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets left="10" top="24.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="firstname" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="450.0" textAlignment="LEFT" textFill="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets left="10" top="44.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="surname" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="450.0" textAlignment="LEFT" textFill="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets left="10" top="64.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="phonenum" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="450.0" textAlignment="LEFT" textFill="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets left="10" top="84.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="address" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="450.0" textAlignment="LEFT" textFill="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets left="10" top="104.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="postcode" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="450.0" textAlignment="LEFT" textFill="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets left="10" top="124.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="balanceOrEmploymentDate" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="450.0" textAlignment="LEFT" textFill="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets left="10" top="144.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Button mnemonicParsing="false" onAction="#goToEditUser" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #3C58FA;" text="Edit Your Information" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+        </Button>
+        <ImageView fx:id="profilePIC" fitHeight="150.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Button mnemonicParsing="false" onAction="#loadImage" opacity="0.87" prefHeight="25.0" prefWidth="60.0" text="Load" textFill="BLACK" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <GridPane.margin>
+                <Insets bottom="120" right="110" />
+            </GridPane.margin>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#setImage" prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: #3C58FA;" text="Edit Avatar" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+    </children>
+</GridPane>

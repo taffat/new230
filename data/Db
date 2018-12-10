@@ -1,0 +1,402 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               10.3.11-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win64
+-- HeidiSQL Version:             9.4.0.5125
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- Dumping structure for table users.bok_book
+DROP TABLE IF EXISTS `bok_book`;
+CREATE TABLE IF NOT EXISTS `bok_book` (
+  `bok_ResourceId` int(11) NOT NULL,
+  `bok_Author` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `bok_Publisher` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `bok_Genre` varchar(64) COLLATE latin1_general_ci DEFAULT NULL,
+  `bok_ISBN` varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  `bok_language` varchar(64) COLLATE latin1_general_ci DEFAULT NULL,
+  PRIMARY KEY (`bok_ResourceId`),
+  CONSTRAINT `FK_bok_book_res_resource` FOREIGN KEY (`bok_ResourceId`) REFERENCES `res_resource` (`res_ResourceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.bor_borrow
+DROP TABLE IF EXISTS `bor_borrow`;
+CREATE TABLE IF NOT EXISTS `bor_borrow` (
+  `bor_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `bor_UserId` int(11) NOT NULL,
+  `bor_ResourceCopyId` int(11) NOT NULL,
+  `bor_DateBorrowed` datetime NOT NULL,
+  `bor_DateDue` datetime DEFAULT NULL,
+  `bor_returned` tinyint(1) NOT NULL DEFAULT 0,
+  `bor_Status` VARCHAR(64) NOT NULL DEFAULT 'Pending' COLLATE 'latin1_general_ci',
+  PRIMARY KEY (`bor_Id`),
+  KEY `FK_bor_borrow_use_user` (`bor_UserId`),
+  KEY `FK_bor_borrow_rcp_resourcecopy` (`bor_ResourceCopyId`),
+  CONSTRAINT `FK_bor_borrow_rcp_resourcecopy` FOREIGN KEY (`bor_ResourceCopyId`) REFERENCES `rcp_resourcecopy` (`rcp_CopyId`),
+  CONSTRAINT `FK_bor_borrow_use_user` FOREIGN KEY (`bor_UserId`) REFERENCES `use_user` (`use_UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.dvd_dvd
+DROP TABLE IF EXISTS `dvd_dvd`;
+CREATE TABLE IF NOT EXISTS `dvd_dvd` (
+  `dvd_ResourceId` int(11) NOT NULL,
+  `dvd_Director` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `dvd_Runtime` int(11) NOT NULL,
+  `dvd_Language` varchar(64) COLLATE latin1_general_ci DEFAULT NULL,
+  `dvd_Subtitles` VARCHAR(255) NULL DEFAULT NULL COLLATE 'latin1_general_ci',
+  PRIMARY KEY (`dvd_ResourceId`),
+  CONSTRAINT `FK_dvd_dvd_res_resource` FOREIGN KEY (`dvd_ResourceId`) REFERENCES `res_resource` (`res_ResourceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.fin_fine
+DROP TABLE IF EXISTS `fin_fine`;
+CREATE TABLE IF NOT EXISTS `fin_fine` (
+  `fin_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `fin_ReturnId` int(11) NOT NULL,
+  `fin_FineAmount` int(11) NOT NULL,
+  `fin_DaysOverdue` int(11) NOT NULL,
+  `fin_Status` VARCHAR(64) NOT NULL DEFAULT 'Pending' COLLATE 'latin1_general_ci',
+  PRIMARY KEY (`fin_Id`),
+  KEY `FK_fin_fine_ret_return` (`fin_ReturnId`),
+  CONSTRAINT `FK_fin_fine_ret_return` FOREIGN KEY (`fin_ReturnId`) REFERENCES `ret_return` (`ret_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.lab_laptop
+DROP TABLE IF EXISTS `lab_laptop`;
+CREATE TABLE IF NOT EXISTS `lab_laptop` (
+  `lab_ResourceId` int(11) NOT NULL,
+  `lab_Manufacturer` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `lab_Model` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `lab_OS` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`lab_ResourceId`),
+  CONSTRAINT `FK__res_resource` FOREIGN KEY (`lab_ResourceId`) REFERENCES `res_resource` (`res_ResourceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.lib_librarian
+DROP TABLE IF EXISTS `lib_librarian`;
+CREATE TABLE IF NOT EXISTS `lib_librarian` (
+  `lib_UserId` int(11) NOT NULL,
+  `lib_StaffNumber` int(11) NOT NULL,
+  `lib_EmploymentDate` datetime NOT NULL,
+  PRIMARY KEY (`lib_UserId`),
+  CONSTRAINT `FK_lib_librarian_use_user` FOREIGN KEY (`lib_UserId`) REFERENCES `use_user` (`use_UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.pay_payment
+DROP TABLE IF EXISTS `pay_payment`;
+CREATE TABLE IF NOT EXISTS `pay_payment` (
+  `pay_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `pay_UserId` int(11) NOT NULL,
+  `pay_Date` datetime NOT NULL,
+  `pay_Amount` FLOAT NOT NULL,
+  `pay_Status` varchar(64) NOT NULL DEFAULT 'Pending',
+  PRIMARY KEY (`pay_Id`),
+ KEY `FK_pay_Payment_use_user` (`pay_UserId`),
+ CONSTRAINT `FK_pay_Payment_use_user` FOREIGN KEY (`pay_UserId`) REFERENCES `use_user` (`use_UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.rcps_resourcecopystatus
+DROP TABLE IF EXISTS `rcps_resourcecopystatus`;
+CREATE TABLE IF NOT EXISTS `rcps_resourcecopystatus` (
+	`rcps_ResourceCopyStatusId` TINYINT(4) NOT NULL,
+	`rcps_ResourceCopyStatus` VARCHAR(64) NOT NULL,
+	PRIMARY KEY (`rcps_ResourceCopyStatusId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.rcp_resourcecopy
+DROP TABLE IF EXISTS `rcp_resourcecopy`;
+CREATE TABLE IF NOT EXISTS `rcp_resourcecopy` (
+  `rcp_CopyId` int(11) NOT NULL AUTO_INCREMENT,
+  `rcp_ResourceId` int(11) NOT NULL,
+  `rcp_loanDuration` int(11) NOT NULL COMMENT 'number of days',
+  `rcp_Status` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`rcp_CopyId`),
+  KEY `FK_rcp_resourcecopy_res_resource` (`rcp_ResourceId`),
+  KEY `FK_rcp_resourcecopy_rcps_resourcecopystatus` (`rcp_Status`),
+  CONSTRAINT `FK_rcp_resourcecopy_rcps_resourcecopystatus` FOREIGN KEY (`rcp_Status`) REFERENCES `rcps_resourcecopystatus` (`rcps_ResourceCopyStatusId`),
+  CONSTRAINT `FK_rcp_resourcecopy_res_resource` FOREIGN KEY (`rcp_ResourceId`) REFERENCES `res_resource` (`res_ResourceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.req_request
+DROP TABLE IF EXISTS `req_request`;
+CREATE TABLE IF NOT EXISTS `req_request` (
+  `req_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `req_UserId` int(11) NOT NULL,
+  `req_BorrowId` int(11) NOT NULL,
+  `req_RequestDate` datetime NOT NULL,
+  `req_Available` tinyint(1) NOT NULL,
+  PRIMARY KEY (`req_Id`),
+  KEY `FK1` (`req_UserId`),
+  KEY `FK2` (`req_BorrowId`),
+  CONSTRAINT `FK1` FOREIGN KEY (`req_UserId`) REFERENCES `use_user` (`use_UserId`),
+  CONSTRAINT `FK_req_request_bor_borrow` FOREIGN KEY (`req_BorrowId`) REFERENCES `bor_borrow` (`bor_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.res_resource
+DROP TABLE IF EXISTS `res_resource`;
+CREATE TABLE IF NOT EXISTS `res_resource` (
+  `res_ResourceId` int(11) NOT NULL AUTO_INCREMENT,
+  `res_ResourceType` int(11) NOT NULL DEFAULT 0,
+  `res_Title` varchar(255) COLLATE latin1_general_ci NOT NULL,
+  `res_Year` int(5) NOT NULL,
+  `res_ThumbnailImage` MEDIUMBLOB NOT NULL,
+  `res_Description` VARCHAR(255) NULL DEFAULT NULL COLLATE 'latin1_general_ci',
+  `res_Rating` TINYINT(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`res_ResourceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.ret_return
+DROP TABLE IF EXISTS `ret_return`;
+CREATE TABLE IF NOT EXISTS `ret_return` (
+  `ret_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `ret_BorrowId` int(11) NOT NULL,
+  `ret_DateReturned` datetime NOT NULL,
+  `ret_Overdue` tinyint(1) NOT NULL,
+  `ret_Status` VARCHAR(64) NOT NULL DEFAULT 'Pending' COLLATE 'latin1_general_ci',
+  PRIMARY KEY (`ret_Id`),
+  KEY `FK_ret_return_bor_borrow` (`ret_BorrowId`),
+  CONSTRAINT `FK_ret_return_bor_borrow` FOREIGN KEY (`ret_BorrowId`) REFERENCES `bor_borrow` (`bor_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.rev_resourcereview
+DROP TABLE IF EXISTS `rev_resourcereview`;
+CREATE TABLE IF NOT EXISTS `rev_resourcereview` (
+  `rev_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `rev_ResourceId` int(11) NOT NULL,
+  `rev_UserId` int(11) NOT NULL,
+  `rev_Title` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `rev_Review` varchar(255) COLLATE latin1_general_ci NOT NULL,
+  `rev_Rating` tinyint(4) NOT NULL,
+  PRIMARY KEY (`rev_Id`),
+  KEY `FK_rev_resourcereview_res_resource` (`rev_ResourceId`),
+  KEY `FK_rev_resourcereview_use_user` (`rev_UserId`),
+  CONSTRAINT `FK_rev_resourcereview_res_resource` FOREIGN KEY (`rev_ResourceId`) REFERENCES `res_resource` (`res_ResourceId`),
+  CONSTRAINT `FK_rev_resourcereview_use_user` FOREIGN KEY (`rev_UserId`) REFERENCES `use_user` (`use_UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.uset_usertype
+DROP TABLE IF EXISTS `uset_usertype`;
+CREATE TABLE IF NOT EXISTS `uset_usertype` (
+	`uset_UserTypeId` INT(11) NOT NULL,
+	`uset_UserType` VARCHAR(64) NOT NULL,
+	PRIMARY KEY (`uset_UserTypeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- Data exporting was unselected.
+-- Dumping structure for table users.use_user
+DROP TABLE IF EXISTS `use_user`;
+CREATE TABLE IF NOT EXISTS `use_user` (
+  `use_UserId` int(11) NOT NULL AUTO_INCREMENT,
+  `use_UserType` int(11) NOT NULL DEFAULT 0,
+  `use_Username` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `use_FirstName` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `use_LastName` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `use_PhoneNumber` varchar(64) COLLATE latin1_general_ci NOT NULL,
+  `use_Address` varchar(255) COLLATE latin1_general_ci NOT NULL,
+  `use_Postcode` varchar(10) COLLATE latin1_general_ci NOT NULL,
+  `use_Balance` FLOAT NOT NULL DEFAULT 0,
+  `use_ProfileImage` MEDIUMBLOB NOT NULL,
+  PRIMARY KEY (`use_UserId`),
+  KEY `FK_use_user_uset_usertype` (`use_UserType`),
+  CONSTRAINT `FK_use_user_uset_usertype` FOREIGN KEY (`use_UserType`) REFERENCES `uset_usertype` (`uset_UserTypeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+
+-- Data exporting was unselected.
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+INSERT INTO uset_usertype (uset_UserTypeId , uset_UserType) VALUES
+	(0, "Normal") ,
+	(1, "Librarian"),
+	(2, "Deleted");
+
+INSERT INTO rcps_resourcecopystatus (rcps_ResourceCopyStatusId , rcps_ResourceCopyStatus) VALUES
+	(0, "Available") ,
+	(1, "Reserved"),
+	(2, "On Loan"),
+	(3, "Damaged"),
+	(4, "Removed");
+
+INSERT INTO use_user (use_UserId, use_UserType, use_Username, use_FirstName, use_LastName, use_PhoneNumber, use_Address, use_Postcode, use_Balance, use_ProfileImage) VALUES
+	 (NULL, 0, 'U', 'Bob', 'smith', '01895 352310',  'Bay Campus', 'SA1 8EN', 10, ''),
+	 (NULL, 1, 'L', 'Janice', 'smith', '01895 886312',  'Bay Campus', 'SA1 8EN', 0, '');
+	 
+INSERT INTO lib_librarian (lib_UserId, lib_StaffNumber, lib_EmploymentDate) VALUES
+	 (1, 47236823, NOW() - INTERVAL 100 DAY);
+
+INSERT INTO res_resource (res_ResourceId, res_ResourceType, res_Title, res_Year, res_ThumbnailImage, res_Description, res_Rating) VALUES
+	(NULL, 0, 'Bob', 1995,"/resource/image/01", "this is for testing purposes. this is for testing purposes", 4),
+	(NULL, 0, 'Bob 2: the returns of bob', 1998,"/resource/image/01", "this is for testing purposes. this is for testing purposes", 5),
+	(NULL, 0, 'Bob 3: the rise of Bob', 1999,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 2),
+	(NULL, 0, 'Green Eggs and Ham', 1960,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 4),
+	(NULL, 0, 'The Cat in the Hat', 1973,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 5),
+	(NULL, 0, 'Curious George', 1941,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 3),
+	(NULL, 1, 'Bob the Builder', 1998,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 5),
+	(NULL, 1, 'Postman Pat', 1981,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 2),
+	(NULL, 1, 'Bob the movie', 2001,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 1),
+	(NULL, 1, 'Sharknado', 2013,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 3),
+	(NULL, 1, 'Sharknado 2: The Second One', 2014,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 4),
+	(NULL, 1, 'Sharknado 3: Oh Hell No!', 2015,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 1),
+	(NULL, 1, 'Sharknado 4: The 4th Awakens', 2016,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 2),
+	(NULL, 1, 'Sharknado 5: Global Swarming', 2017,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 5),
+	(NULL, 1, "The Last Sharknado: it's about Time", 2018,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 3),
+	(NULL, 2, 'Microsoft Surface Pro 6', 2018,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 4),
+	(NULL, 2, 'Apple MacBook Air', 2018,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 2),
+	(NULL, 2, 'Apple MacBook Pro', 2017,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 1),
+	(NULL, 2, 'Predator 21X', 2016,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 5);
+	
+INSERT INTO bok_book (bok_ResourceId ,bok_Author , bok_Publisher, bok_Genre, bok_ISBN, bok_language) VALUES
+	(1, "John Smith", "Bob Hope", "Horror", "978-3-16-148410-0", "English"),
+	(2, "John Smith", "Bob Hope", "Action and Adventure", "938-3-16-435261-0", "English"),
+	(3, "John Smith", "Bob Hope", "Action and Adventure", "978-3-16-750982-0", "English"),
+	(4, "Dr. Seuss", "Penguin Random House LLC.", "Children's", "978-3-16-920482-0", "English"),
+	(5, "Dr. Seuss", "Penguin Random House LLC.", "Children's", "978-3-16-121842-0", "English"),
+	(6, "H. A. Rey, Margret Rey", "Houghton, Mifflin Company", "Children's", "978-3-16-853872-0", "English");	
+	
+INSERT INTO dvd_dvd (dvd_ResourceId, dvd_Director, dvd_Runtime, dvd_Language , dvd_Subtitles) VALUES
+	(7, "Colleen Morton", 10, "English", "English, Spanish, French, German"),
+	(8, "Ivor Wood", 15, "English", "English, Spanish"),
+	(9, "John Smith", 30, "English", "English, French, German"),
+	(10, "Anthony C. Ferrante", 85, "English", NULL),
+	(11, "Anthony C. Ferrante", 95, "English", NULL),
+	(12, "Anthony C. Ferrante", 90, "English", NULL),
+	(13, "Anthony C. Ferrante", 90, "English", NULL),
+	(14, "Anthony C. Ferrante", 90, "English", NULL),
+	(15, "Anthony C. Ferrante", 90, "English", NULL);
+	
+INSERT INTO lab_laptop (lab_ResourceId, lab_Manufacturer, lab_Model, lab_OS) VALUES
+	(16, "Microsoft", "32423523", "English"),
+	(17, "Apple Inc", "A1466 (EMC 2925)","Spanish"),
+	(18, "Apple Inc", "MLH12xx/A","French"),
+	(19, "Acer", "NH.Q1RSI.001","German");	
+	
+INSERT INTO rcp_resourcecopy (rcp_CopyId, rcp_ResourceId, rcp_loanDuration, rcp_Status) VALUES
+	(NULL, 1, 7, 2),
+	(NULL, 1, 28, 2),
+	(NULL, 1, 14, 0),
+	(NULL, 1, 7, 0),
+	(NULL, 1, 7, 0),
+	(NULL, 2, 1, 0 ),
+	(NULL, 2, 28, 0),
+	(NULL, 2, 28, 0),
+	(NULL, 2, 14, 0),
+	(NULL, 2, 14, 2),
+	(NULL, 3, 7, 2),
+	(NULL, 3, 14, 2),
+	(NULL, 3, 14, 0),
+	(NULL, 3, 14, 0),
+	(NULL, 3, 14, 0),
+	(NULL, 3, 7, 0),
+	(NULL, 4, 14, 0),
+	(NULL, 4, 14, 0),
+	(NULL, 4, 14, 0),
+	(NULL, 4, 14, 0),
+	(NULL, 4, 14, 0),
+	(NULL, 4, 7, 0),
+	(NULL, 4, 28, 0),
+	(NULL, 4, 28, 0),
+	(NULL, 4, 7, 2),
+	(NULL, 4, 7, 2),
+	(NULL, 5, 28, 0),
+	(NULL, 5, 7, 2),
+	(NULL, 5, 7, 0),
+	(NULL, 6, 7, 0),
+	(NULL, 7, 28, 0),
+	(NULL, 7, 7, 0),
+	(NULL, 7, 7, 0),
+	(NULL, 8, 28, 0),
+	(NULL, 8, 7, 0),
+	(NULL, 8, 14, 0),
+	(NULL, 9, 7, 0),
+	(NULL, 9, 7, 0),
+	(NULL, 9, 7, 0),
+	(NULL, 10, 7, 2),
+	(NULL, 10, 7, 0),
+	(NULL, 11, 7, 2),
+	(NULL, 11, 7, 0),
+	(NULL, 12, 7, 2),
+	(NULL, 12, 7, 0),
+	(NULL, 13, 7, 2),
+	(NULL, 13, 7, 0),
+	(NULL, 14, 7, 2),
+	(NULL, 14, 7, 0),
+	(NULL, 15, 7, 2),
+	(NULL, 16, 7, 0),
+	(NULL, 17, 7, 2),
+	(NULL, 17, 7, 2),
+	(NULL, 18, 7, 0),
+	(NULL, 18, 7, 0),
+	(NULL, 19, 7, 0);
+
+
+INSERT INTO bor_borrow (bor_Id , bor_UserId ,bor_ResourceCopyId , bor_DateBorrowed, bor_DateDue, bor_returned, bor_Status) VALUES
+	(NULL, 1, 1, NOW() - INTERVAL 14 DAY, NOW() - INTERVAL 12 DAY, 1, 'Returned'),
+	(NULL, 2, 2, NOW() - INTERVAL 29 DAY, NULL, 1, 'Returned'),
+	(NULL, 1, 2, NOW() - INTERVAL 33 DAY, NOW() - INTERVAL 30 DAY, 1, 'Returned'),
+	(NULL, 1, 10, NOW() - INTERVAL 66 DAY, NULL, 1, 'Returned'),
+	(NULL, 1, 15, NOW() - INTERVAL 42 DAY, NULL, 1, 'Returned'),
+	(NULL, 1, 20, NOW() - INTERVAL 21 DAY, NOW() - INTERVAL 14 DAY, 1, 'Returned'),
+	(NULL, 1, 22, NOW() - INTERVAL 9 DAY, NULL, 1, 'Returned'),
+	(NULL, 1, 25, NOW() - INTERVAL 20 DAY, NULL, 1, 'Returned'),
+	(NULL, 2, 40, NOW() - INTERVAL 88 DAY, NULL, 1, 'Returned'),
+	(NULL, 1, 45, NOW() - INTERVAL 32 DAY, NULL, 1, 'Returned'),
+	(NULL, 1, 50, NOW() - INTERVAL 34 DAY, NOW() - INTERVAL 33 DAY, 1, 'Returned'),
+	(NULL, 1, 1, NOW() - INTERVAL 7 DAY, NOW() - INTERVAL 3 DAY, 0, 'On Loan'),
+	(NULL, 2, 2, NOW() - INTERVAL 2 DAY, NULL, 0, 'On Loan'),
+	(NULL, 1, 10, NOW() - INTERVAL 4 DAY, NOW() - INTERVAL 1 DAY, 0, 'On Loan'),
+	(NULL, 1, 11, NOW() - INTERVAL 2 DAY, NULL, 0, 'On Loan'),
+	(NULL, 2, 12, NOW() - INTERVAL 3 DAY, NULL, 0, 'On Loan'),
+	(NULL, 1, 25, NOW() - INTERVAL 8 DAY, NOW(), 0, 'On Loan'),
+	(NULL, 1, 26, NOW() - INTERVAL 4 DAY, NULL, 0, 'On Loan'),
+	(NULL, 2, 28, NOW() - INTERVAL 7 DAY, NOW() - INTERVAL 1 DAY, 0,'On Loan'),
+	(NULL, 1, 40, NOW() - INTERVAL 1 DAY, NULL, 0, 'On Loan'),
+	(NULL, 2, 42, NOW() - INTERVAL 9 DAY, NOW() - INTERVAL 7 DAY, 0, 'On Loan'),
+	(NULL, 1, 44, NOW() - INTERVAL 12 DAY, NULL, 0, 'On Loan'),
+	(NULL, 2, 46, NOW() - INTERVAL 3 DAY, NULL, 0, 'On Loan'),
+	(NULL, 2, 48, NOW() - INTERVAL 2 DAY, NULL, 0, 'On Loan'),
+	(NULL, 1, 50, NOW() - INTERVAL 20 DAY, NOW() - INTERVAL 1 DAY, 0, 'On Loan');
+	
+INSERT INTO ret_return (ret_Id, ret_BorrowId, ret_DateReturned, ret_Overdue ) VALUES
+	(NULL, 1, NOW() - INTERVAL 9 DAY,1),
+	(NULL, 2, NOW() - INTERVAL 20 DAY,0),
+	(NULL, 3, NOW() - INTERVAL 15 DAY,1),
+	(NULL, 4, NOW() - INTERVAL 40 DAY,0),
+	(NULL, 5, NOW() - INTERVAL 23 DAY,0),
+	(NULL, 6, NOW() - INTERVAL 7 DAY,1),
+	(NULL, 7, NOW() - INTERVAL 2 DAY,0),
+	(NULL, 8, NOW() - INTERVAL 11 DAY,0),
+	(NULL, 9, NOW() - INTERVAL 70 DAY,0),
+	(NULL, 10, NOW() - INTERVAL 5 DAY,0),
+	(NULL, 11, NOW() - INTERVAL 22 DAY,1);	
+	
+INSERT INTO fin_fine (fin_Id, fin_ReturnId, fin_FineAmount, fin_DaysOverdue) VALUES
+	(NULL, 1, 6, 3),
+	(NULL, 3, 25, 15),
+	(NULL, 6, 14, 7),
+	(NULL, 11, 22, 11);
+
+INSERT INTO pay_payment (pay_Id, pay_UserId, pay_Date, pay_Amount) VALUES
+	(NULL, 1, NOW() - INTERVAL 16 DAY, 10),
+	(NULL, 1, NOW() - INTERVAL 10 DAY, 30),
+	(NULL, 1, NOW() - INTERVAL 5 DAY, 27),
+	(NULL, 1, NOW(), 10);

@@ -1,0 +1,16 @@
+ALTER TABLE `bok_book` ADD CONSTRAINT `FK_bok_book_res_resource` FOREIGN KEY (`bok_ResourceId`) REFERENCES `res_resource` (`res_ResourceId`);
+ALTER TABLE `bor_borrow` ADD CONSTRAINT `FK_bor_borrow_rcp_resourcecopy` FOREIGN KEY (`bor_ResourceCopyId`) REFERENCES `rcp_resourcecopy` (`rcp_CopyId`);
+ALTER TABLE `bor_borrow` ADD CONSTRAINT `FK_bor_borrow_use_user` FOREIGN KEY (`bor_UserId`) REFERENCES `use_user` (`use_UserId`);
+ALTER TABLE `dvd_dvd` ADD CONSTRAINT `FK_dvd_dvd_res_resource` FOREIGN KEY (`dvd_ResourceId`) REFERENCES `res_resource` (`res_ResourceId`);
+ALTER TABLE `fin_fine` ADD CONSTRAINT `FK_fin_fine_ret_return` FOREIGN KEY (`fin_ReturnId`) REFERENCES `ret_return` (`ret_Id`);
+ALTER TABLE `lab_laptop` ADD CONSTRAINT `FK__res_resource` FOREIGN KEY (`lab_ResourceId`) REFERENCES `res_resource` (`res_ResourceId`);
+ALTER TABLE `lib_librarian` ADD CONSTRAINT `FK_lib_librarian_use_user` FOREIGN KEY (`lib_UserId`) REFERENCES `use_user` (`use_UserId`); 
+ALTER TABLE `pay_Payment` ADD CONSTRAINT `FK_pay_Payment_use_user` FOREIGN KEY (`pay_UserId`) REFERENCES `use_user` (`use_UserId`);
+ALTER TABLE `rcp_resourcecopy` ADD CONSTRAINT `FK_rcp_resourcecopy_res_resource` FOREIGN KEY (`rcp_ResourceId`) REFERENCES `res_resource` (`res_ResourceId`);
+ALTER TABLE `rcp_resourcecopy` ADD CONSTRAINT `FK_rcp_resourcecopy_rcps_resourcecopystatus` FOREIGN KEY (`rcp_Status`) REFERENCES `rcps_resourcecopystatus` (`rcps_ResourceCopyStatusId`);
+ALTER TABLE `req_request` ADD CONSTRAINT `FK1` FOREIGN KEY (`req_UserId`) REFERENCES `use_user` (`use_UserId`);
+ALTER TABLE `req_request` ADD CONSTRAINT `FK_req_request_bor_borrow` FOREIGN KEY (`req_BorrowId`) REFERENCES `bor_borrow` (`bor_Id`);
+ALTER TABLE `ret_return` ADD CONSTRAINT `FK_ret_return_bor_borrow` FOREIGN KEY (`ret_BorrowId`) REFERENCES `bor_borrow` (`bor_Id`);
+ALTER TABLE 'res_resource' ADD CONSTRAINT `FK_rev_resourcereview_res_resource` FOREIGN KEY (`rev_ResourceId`) REFERENCES `res_resource` (`res_ResourceId`),
+ALTER TABLE 'use_user'  ADD CONSTRAINT `FK_rev_resourcereview_use_user` FOREIGN KEY (`rev_UserId`) REFERENCES `use_user` (`use_UserId`),
+ALTER TABLE `use_user` ADD CONSTRAINT `FK_use_user_uset_usertype` FOREIGN KEY (`use_UserType`) REFERENCES `uset_usertype` (`uset_UserTypeId`);

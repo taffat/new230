@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="987.0" style="-fx-background-color: #E5E5E5;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BookController">
+   <children>
+      <TableView fx:id="tblBook" editable="true" fixedCellSize="0.0" layoutX="106.0" layoutY="61.0" prefHeight="260.0" prefWidth="850.0">
+        <columns>
+          <TableColumn fx:id="col_ResourceId" editable="false" prefWidth="35.0" text="ID" />
+          <TableColumn fx:id="col_Title" editable="false" prefWidth="160.0" text="Title" />
+            <TableColumn fx:id="col_Author" editable="false" prefWidth="101.0" text="Author" />
+            <TableColumn fx:id="col_Publisher" editable="false" minWidth="0.0" prefWidth="122.0" text="Publisher" />
+            <TableColumn fx:id="col_Genre" editable="false" maxWidth="218.0" minWidth="-1.0" prefWidth="131.0" text="Genre" />
+            <TableColumn fx:id="col_ISBN" editable="false" prefWidth="99.0" text="ISBN" />
+            <TableColumn fx:id="col_Language" editable="false" prefWidth="91.0" text="Language" />
+            <TableColumn fx:id="col_Year" editable="false" prefWidth="45.0" text="year" />
+            <TableColumn fx:id="col_Copies" editable="false" prefWidth="65.0" text="No. Copies" />
+        </columns>
+      </TableView>
+      <VBox layoutX="14.0" layoutY="84.0" prefHeight="214.0" prefWidth="92.0">
+         <children>
+            <Label contentDisplay="CENTER" prefHeight="22.0" prefWidth="110.0" text="Filter by Type:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="radDVDs" mnemonicParsing="false" onAction="#filterByResource" prefHeight="57.0" prefWidth="51.0" text="DVDs">
+               <toggleGroup>
+                  <ToggleGroup fx:id="DVDGroup" />
+               </toggleGroup>
+               <opaqueInsets>
+                  <Insets top="10.0" />
+               </opaqueInsets>
+            </RadioButton>
+            <RadioButton fx:id="radLaptops" mnemonicParsing="false" onAction="#filterByResource" prefHeight="44.0" prefWidth="64.0" text="Laptops">
+               <toggleGroup>
+                  <ToggleGroup fx:id="LaptopGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="radAll" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#filterByResource" prefHeight="44.0" prefWidth="35.0" text="All" />
+         </children>
+      </VBox>
+      <TextField fx:id="searchBox" layoutX="106.0" layoutY="27.0" onKeyTyped="#searchResources" prefHeight="25.0" prefWidth="850.0" promptText="Search for Resource..." />
+      <Label layoutX="14.0" layoutY="18.0" prefHeight="43.0" prefWidth="73.0" text="Books">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Button layoutX="31.0" layoutY="331.0" mnemonicParsing="false" prefWidth="128.0" style="-fx-background-color: #3C58FA;" text="Return to Dashboard" textFill="WHITE" />
+      <Button fx:id="btnUserDash" layoutX="14.0" layoutY="331.0" mnemonicParsing="false" onAction="#goToUserDash" opacity="0.0" prefHeight="35.0" prefWidth="174.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EditCopyController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="65.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="511.0" minWidth="10.0" prefWidth="458.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="71.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="124.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="95.0" minHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="206.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ImageView fitHeight="39.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+         <image>
+            <Image url="@images/BackArrow1.png" />
+         </image>
+         <GridPane.margin>
+            <Insets top="12.0" />
+         </GridPane.margin>
+      </ImageView>
+      <Text fill="#333333" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit a Copy" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+         <GridPane.margin>
+            <Insets top="-10.0" />
+         </GridPane.margin>
+      </Text>
+      <TextField fx:id="search" maxWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Enter a copy ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" onAction="#displayCopy" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: #3C58FA;" text="Search" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+      <Label text="Edit any loan Duration. Leave blank to remain unchanged." GridPane.columnIndex="1" GridPane.halignment="CENTER">
+         <GridPane.margin>
+            <Insets top="65.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="currentLoanDuration" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Label>
+      <ChoiceBox fx:id="loanDurationChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+      <Label text="LoanDuration:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets right="155.0" top="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Button mnemonicParsing="false" onAction="#editCopy" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: #3C58FA;" text="Edit Copy" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" onAction="#goToLogin" opacity="0.0" prefHeight="44.0" prefWidth="61.0" style="-fx-background-color: #444;" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+      <ImageView fitHeight="54.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+         <image>
+            <Image url="@images/LogOut.png" />
+         </image>
+         <GridPane.margin>
+            <Insets top="5.0" />
+         </GridPane.margin>
+      </ImageView>
+   	<Button mnemonicParsing="false" onAction="#goToManageResources" opacity="0.0" prefHeight="64.0" prefWidth="80.0" style="-fx-background-color: #444;" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets top="5.0" />
+            </GridPane.margin>
+        </Button>
+   </children>
+</GridPane>

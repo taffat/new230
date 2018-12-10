@@ -1,0 +1,177 @@
+INSERT INTO uset_usertype (uset_UserTypeId , uset_UserType) VALUES
+	(0, "Normal") ,
+	(1, "Librarian"),
+	(2, "Deleted");
+
+INSERT INTO rcps_resourcecopystatus (rcps_ResourceCopyStatusId , rcps_ResourceCopyStatus) VALUES
+	(0, "Available") ,
+	(1, "Reserved"),
+	(2, "On Loan"),
+	(3, "Damaged"),
+	(4, "Removed");
+	
+INSERT INTO use_user (use_UserId, use_UserType, use_Username, use_FirstName, use_LastName, use_PhoneNumber, use_Address, use_Postcode, use_Balance, use_ProfileImage) VALUES
+	 (NULL, 0, 'U', 'Bob', 'smith', '01895 352310',  'Bay Campus', 'SA1 8EN', 10, ''),
+	 (NULL, 1, 'L', 'Janice', 'smith', '01895 886312',  'Bay Campus', 'SA1 8EN', 0, '');
+	 
+INSERT INTO lib_librarian (lib_UserId, lib_StaffNumber, lib_EmploymentDate) VALUES
+	 (1, 47236823, NOW() - INTERVAL 100 DAY);
+
+INSERT INTO res_resource (res_ResourceId, res_ResourceType, res_Title, res_Year, res_ThumbnailImage, res_Description, res_Rating) VALUES
+	(NULL, 0, 'Bob', 1995,"/resource/image/01", "this is for testing purposes. this is for testing purposes", 4),
+	(NULL, 0, 'Bob 2: the returns of bob', 1998,"/resource/image/01", "this is for testing purposes. this is for testing purposes", 5),
+	(NULL, 0, 'Bob 3: the rise of Bob', 1999,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 2),
+	(NULL, 0, 'Green Eggs and Ham', 1960,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 4),
+	(NULL, 0, 'The Cat in the Hat', 1973,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 5),
+	(NULL, 0, 'Curious George', 1941,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 3),
+	(NULL, 1, 'Bob the Builder', 1998,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 5),
+	(NULL, 1, 'Postman Pat', 1981,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 2),
+	(NULL, 1, 'Bob the movie', 2001,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 1),
+	(NULL, 1, 'Sharknado', 2013,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 3),
+	(NULL, 1, 'Sharknado 2: The Second One', 2014,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 4),
+	(NULL, 1, 'Sharknado 3: Oh Hell No!', 2015,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 1),
+	(NULL, 1, 'Sharknado 4: The 4th Awakens', 2016,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 2),
+	(NULL, 1, 'Sharknado 5: Global Swarming', 2017,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 5),
+	(NULL, 1, "The Last Sharknado: it's about Time", 2018,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 3),
+	(NULL, 2, 'Microsoft Surface Pro 6', 2018,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 4),
+	(NULL, 2, 'Apple MacBook Air', 2018,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 2),
+	(NULL, 2, 'Apple MacBook Pro', 2017,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 1),
+	(NULL, 2, 'Predator 21X', 2016,"/resource/image/01" , "this is for testing purposes. this is for testing purposes", 5);;
+	
+	
+INSERT INTO bok_book (bok_ResourceId ,bok_Author , bok_Publisher, bok_Genre, bok_ISBN, bok_language) VALUES
+	(1, "John Smith", "Bob Hope", "Horror", "978-3-16-148410-0", "English"),
+	(2, "John Smith", "Bob Hope", "Action and Adventure", "938-3-16-435261-0", "English"),
+	(3, "John Smith", "Bob Hope", "Action and Adventure", "978-3-16-750982-0", "English"),
+	(4, "Dr. Seuss", "Penguin Random House LLC.", "Children's", "978-3-16-920482-0", "English"),
+	(5, "Dr. Seuss", "Penguin Random House LLC.", "Children's", "978-3-16-121842-0", "English"),
+	(6, "H. A. Rey, Margret Rey", "Houghton, Mifflin Company", "Children's", "978-3-16-853872-0", "English");	
+	
+INSERT INTO dvd_dvd (dvd_ResourceId, dvd_Director, dvd_Runtime, dvd_Language , dvd_Subtitles) VALUES
+	(7, "Colleen Morton", 10, "English", "English, Spanish, French, German"),
+	(8, "Ivor Wood", 15, "English", "English, Spanish"),
+	(9, "John Smith", 30, "English", "English, French, German"),
+	(10, "Anthony C. Ferrante", 85, "English", NULL),
+	(11, "Anthony C. Ferrante", 95, "English", NULL),
+	(12, "Anthony C. Ferrante", 90, "English", NULL),
+	(13, "Anthony C. Ferrante", 90, "English", NULL),
+	(14, "Anthony C. Ferrante", 90, "English", NULL),
+	(15, "Anthony C. Ferrante", 90, "English", NULL);
+	
+INSERT INTO lab_laptop (lab_ResourceId, lab_Manufacturer, lab_Model, lab_OS) VALUES
+	(16, "Microsoft", "32423523", "English"),
+	(17, "Apple Inc", "A1466 (EMC 2925)","Spanish"),
+	(18, "Apple Inc", "MLH12xx/A","French"),
+	(19, "Acer", "NH.Q1RSI.001","German");	
+	
+INSERT INTO rcp_resourcecopy (rcp_CopyId, rcp_ResourceId, rcp_loanDuration, rcp_Status) VALUES
+	(NULL, 1, 7, 2),
+	(NULL, 1, 28, 2),
+	(NULL, 1, 14, 0),
+	(NULL, 1, 7, 0),
+	(NULL, 1, 7, 0),
+	(NULL, 2, 1, 0 ),
+	(NULL, 2, 28, 0),
+	(NULL, 2, 28, 0),
+	(NULL, 2, 14, 0),
+	(NULL, 2, 14, 2),
+	(NULL, 3, 7, 2),
+	(NULL, 3, 14, 2),
+	(NULL, 3, 14, 0),
+	(NULL, 3, 14, 0),
+	(NULL, 3, 14, 0),
+	(NULL, 3, 7, 0),
+	(NULL, 4, 14, 0),
+	(NULL, 4, 14, 0),
+	(NULL, 4, 14, 0),
+	(NULL, 4, 14, 0),
+	(NULL, 4, 14, 0),
+	(NULL, 4, 7, 0),
+	(NULL, 4, 28, 0),
+	(NULL, 4, 28, 0),
+	(NULL, 4, 7, 2),
+	(NULL, 4, 7, 2),
+	(NULL, 5, 28, 0),
+	(NULL, 5, 7, 2),
+	(NULL, 5, 7, 0),
+	(NULL, 6, 7, 0),
+	(NULL, 7, 28, 0),
+	(NULL, 7, 7, 0),
+	(NULL, 7, 7, 0),
+	(NULL, 8, 28, 0),
+	(NULL, 8, 7, 0),
+	(NULL, 8, 14, 0),
+	(NULL, 9, 7, 0),
+	(NULL, 9, 7, 0),
+	(NULL, 9, 7, 0),
+	(NULL, 10, 7, 2),
+	(NULL, 10, 7, 0),
+	(NULL, 11, 7, 2),
+	(NULL, 11, 7, 0),
+	(NULL, 12, 7, 2),
+	(NULL, 12, 7, 0),
+	(NULL, 13, 7, 2),
+	(NULL, 13, 7, 0),
+	(NULL, 14, 7, 2),
+	(NULL, 14, 7, 0),
+	(NULL, 15, 7, 2),
+	(NULL, 16, 7, 0),
+	(NULL, 17, 7, 2),
+	(NULL, 17, 7, 2),
+	(NULL, 18, 7, 0),
+	(NULL, 18, 7, 0),
+	(NULL, 19, 7, 0);
+
+
+INSERT INTO bor_borrow (bor_Id , bor_UserId ,bor_ResourceCopyId , bor_DateBorrowed, bor_DateDue, bor_returned, bor_Status) VALUES
+	(NULL, 1, 1, NOW() - INTERVAL 14 DAY, NOW() - INTERVAL 12 DAY, 1, 'Returned'),
+	(NULL, 2, 2, NOW() - INTERVAL 29 DAY, NULL, 1, 'Returned'),
+	(NULL, 1, 2, NOW() - INTERVAL 33 DAY, NOW() - INTERVAL 30 DAY, 1, 'Returned'),
+	(NULL, 1, 10, NOW() - INTERVAL 66 DAY, NULL, 1, 'Returned'),
+	(NULL, 1, 15, NOW() - INTERVAL 42 DAY, NULL, 1, 'Returned'),
+	(NULL, 1, 20, NOW() - INTERVAL 21 DAY, NOW() - INTERVAL 14 DAY, 1, 'Returned'),
+	(NULL, 1, 22, NOW() - INTERVAL 9 DAY, NULL, 1, 'Returned'),
+	(NULL, 1, 25, NOW() - INTERVAL 20 DAY, NULL, 1, 'Returned'),
+	(NULL, 2, 40, NOW() - INTERVAL 88 DAY, NULL, 1, 'Returned'),
+	(NULL, 1, 45, NOW() - INTERVAL 32 DAY, NULL, 1, 'Returned'),
+	(NULL, 1, 50, NOW() - INTERVAL 34 DAY, NOW() - INTERVAL 33 DAY, 1, 'Returned'),
+	(NULL, 1, 1, NOW() - INTERVAL 7 DAY, NOW() - INTERVAL 3 DAY, 0, 'On Loan'),
+	(NULL, 2, 2, NOW() - INTERVAL 2 DAY, NULL, 0, 'On Loan'),
+	(NULL, 1, 10, NOW() - INTERVAL 4 DAY, NOW() - INTERVAL 1 DAY, 0, 'On Loan'),
+	(NULL, 1, 11, NOW() - INTERVAL 2 DAY, NULL, 0, 'On Loan'),
+	(NULL, 2, 12, NOW() - INTERVAL 3 DAY, NULL, 0, 'On Loan'),
+	(NULL, 1, 25, NOW() - INTERVAL 8 DAY, NOW(), 0, 'On Loan'),
+	(NULL, 1, 26, NOW() - INTERVAL 4 DAY, NULL, 0, 'On Loan'),
+	(NULL, 2, 28, NOW() - INTERVAL 7 DAY, NOW() - INTERVAL 1 DAY, 0,'On Loan'),
+	(NULL, 1, 40, NOW() - INTERVAL 1 DAY, NULL, 0, 'On Loan'),
+	(NULL, 2, 42, NOW() - INTERVAL 9 DAY, NOW() - INTERVAL 7 DAY, 0, 'On Loan'),
+	(NULL, 1, 44, NOW() - INTERVAL 12 DAY, NULL, 0, 'On Loan'),
+	(NULL, 2, 46, NOW() - INTERVAL 3 DAY, NULL, 0, 'On Loan'),
+	(NULL, 2, 48, NOW() - INTERVAL 2 DAY, NULL, 0, 'On Loan'),
+	(NULL, 1, 50, NOW() - INTERVAL 20 DAY, NOW() - INTERVAL 1 DAY, 0, 'On Loan');
+	
+INSERT INTO ret_return (ret_Id, ret_BorrowId, ret_DateReturned, ret_Overdue ) VALUES
+	(NULL, 1, NOW() - INTERVAL 9 DAY,1),
+	(NULL, 2, NOW() - INTERVAL 20 DAY,0),
+	(NULL, 3, NOW() - INTERVAL 15 DAY,1),
+	(NULL, 4, NOW() - INTERVAL 40 DAY,0),
+	(NULL, 5, NOW() - INTERVAL 23 DAY,0),
+	(NULL, 6, NOW() - INTERVAL 7 DAY,1),
+	(NULL, 7, NOW() - INTERVAL 2 DAY,0),
+	(NULL, 8, NOW() - INTERVAL 11 DAY,0),
+	(NULL, 9, NOW() - INTERVAL 70 DAY,0),
+	(NULL, 10, NOW() - INTERVAL 5 DAY,0),
+	(NULL, 11, NOW() - INTERVAL 22 DAY,1);	
+	
+INSERT INTO fin_fine (fin_Id, fin_ReturnId, fin_FineAmount, fin_DaysOverdue) VALUES
+	(NULL, 1, 6, 3),
+	(NULL, 3, 25, 15),
+	(NULL, 6, 14, 7),
+	(NULL, 11, 22, 11);
+	
+INSERT INTO pay_payment (pay_Id, pay_UserId, pay_Date, pay_Amount) VALUES
+	(NULL, 1, NOW() - INTERVAL 16 DAY, 10),
+	(NULL, 1, NOW() - INTERVAL 10 DAY, 30),
+	(NULL, 1, NOW() - INTERVAL 5 DAY, 27),
+	(NULL, 1, NOW(), 10);
+	
